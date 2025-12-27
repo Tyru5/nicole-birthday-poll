@@ -6,6 +6,7 @@ defmodule Poll.Polls do
   @pubsub Poll.PubSub
 
   import Ecto.Query, warn: false
+
   alias Poll.Repo
   alias Poll.Polls.{Poll, Option}
 

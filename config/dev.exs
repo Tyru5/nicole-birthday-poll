@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :poll, Poll.Repo,
   username: "postgres",
-  password: "deem24;Adrian",
+  password: "password",
   hostname: "localhost",
   database: "poll_dev",
   stacktrace: true,
