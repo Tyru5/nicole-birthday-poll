@@ -17,7 +17,7 @@ alias Poll.Polls.{Poll, Option}
 poll =
   Repo.insert!(%Poll{
     title: "When should we go bowling for Nicole's birthday? 🎉",
-    description: "It's going to be on January 3rd, however, I was boared so I implement this realtime voting page in the Phoenix web framework 😎"
+    description: "It's going to be on January 3rd, however, I was bored so I implement this realtime voting page in the Phoenix web framework 😎"
   })
 
 Repo.insert!(%Option{
