@@ -1,22 +1,13 @@
-# Find eligible builder and runner images on Docker Hub. We use Ubuntu/Debian
+# Find eligible builder and runner images on Docker Hub. We use Ubuntu
 # instead of Alpine to avoid DNS resolution issues in production.
 #
 # https://hub.docker.com/r/hexpm/elixir/tags?name=ubuntu
 # https://hub.docker.com/_/ubuntu/tags
 #
-# This file is based on these images:
+# Verified image tag: hexpm/elixir:1.18.4-erlang-28.3-ubuntu-jammy-20251013
 #
-#   - https://hub.docker.com/r/hexpm/elixir/tags - for the build image
-#   - https://hub.docker.com/_/debian/tags?name=trixie-20251208-slim - for the release image
-#   - https://pkgs.org/ - resource for finding needed packages
-#   - Ex: docker.io/hexpm/elixir:1.18.4-erlang-28.2-debian-trixie-20251208-slim
-#
-ARG ELIXIR_VERSION=1.18.1
-ARG OTP_VERSION=27.2
-ARG DEBIAN_VERSION=bookworm-20241202-slim
-
-ARG BUILDER_IMAGE="docker.io/hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
-ARG RUNNER_IMAGE="docker.io/debian:${DEBIAN_VERSION}"
+ARG BUILDER_IMAGE="docker.io/hexpm/elixir:1.18.4-erlang-28.3-ubuntu-jammy-20251013"
+ARG RUNNER_IMAGE="docker.io/ubuntu:jammy-20251013"
 
 FROM ${BUILDER_IMAGE} AS builder
 
