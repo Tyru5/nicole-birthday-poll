@@ -36,18 +36,20 @@ defmodule PollWeb.Layouts do
   def app(assigns) do
     ~H"""
     <div class="relative min-h-screen bg-canvas text-slate-900 dark:text-slate-50">
-      <div class="noise-layer pointer-events-none absolute inset-0 opacity-30 mix-blend-soft-light dark:opacity-20"></div>
-      <div class="relative z-10 mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
-        <header class="mb-10 flex flex-wrap items-center justify-between gap-4">
+      <div class="grid-layer pointer-events-none absolute inset-0 opacity-40 dark:opacity-30"></div>
+      <div class="noise-layer pointer-events-none absolute inset-0 opacity-30 mix-blend-soft-light dark:opacity-20">
+      </div>
+      <header class="sticky top-0 z-20 border-b border-slate-900/5 bg-white/40 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/25">
+        <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
           <a
             href="/"
-            class="flex items-center gap-3 rounded-full bg-white/70 px-4 py-2 shadow-sm ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/70 dark:ring-white/10"
+            class="group flex items-center gap-3 rounded-full bg-white/70 px-4 py-2 shadow-sm ring-1 ring-black/5 backdrop-blur transition hover:bg-white hover:shadow-md dark:bg-slate-950/35 dark:ring-white/10 dark:hover:bg-slate-950/50"
           >
             <img src={~p"/images/logo.svg"} width="32" height="32" />
             <div class="leading-tight">
               <p class="text-sm font-semibold tracking-tight">Pulse Polls</p>
-              <p class="text-[11px] uppercase tracking-[0.08em] text-slate-500 dark:text-slate-400">
-                live voting · v{Application.spec(:phoenix, :vsn)}
+              <p class="text-[11px] uppercase tracking-[0.12em] text-slate-500 dark:text-slate-400">
+                live voting
               </p>
             </div>
           </a>
@@ -55,12 +57,12 @@ defmodule PollWeb.Layouts do
           <div class="flex items-center gap-2">
             <.theme_toggle />
           </div>
-        </header>
+        </div>
+      </header>
 
-        <main>
-          {render_slot(@inner_block)}
-        </main>
-      </div>
+      <main class="relative z-10 mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
+        {render_slot(@inner_block)}
+      </main>
       <.flash_group flash={@flash} />
     </div>
     """
@@ -116,9 +118,9 @@ defmodule PollWeb.Layouts do
   """
   def theme_toggle(assigns) do
     ~H"""
-    <div class="flex items-center gap-1 rounded-full bg-slate-100/70 px-1 py-1 ring-1 ring-black/5 backdrop-blur dark:bg-slate-800/70 dark:ring-white/10">
+    <div class="flex items-center gap-1 rounded-full bg-white/60 px-1 py-1 ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/50 dark:ring-white/10">
       <button
-        class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-slate-600 transition hover:bg-white/90 hover:text-slate-900 dark:text-slate-200 dark:hover:bg-slate-700/80"
+        class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-slate-700 transition hover:bg-white hover:text-slate-900 dark:text-slate-200 dark:hover:bg-slate-800/70"
         phx-click={JS.dispatch("phx:set-theme")}
         data-phx-theme="system"
       >
@@ -126,7 +128,7 @@ defmodule PollWeb.Layouts do
       </button>
 
       <button
-        class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-slate-600 transition hover:bg-white/90 hover:text-slate-900 dark:text-slate-200 dark:hover:bg-slate-700/80"
+        class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-slate-700 transition hover:bg-white hover:text-slate-900 dark:text-slate-200 dark:hover:bg-slate-800/70"
         phx-click={JS.dispatch("phx:set-theme")}
         data-phx-theme="light"
       >
@@ -134,7 +136,7 @@ defmodule PollWeb.Layouts do
       </button>
 
       <button
-        class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-slate-600 transition hover:bg-white/90 hover:text-slate-900 dark:text-slate-200 dark:hover:bg-slate-700/80"
+        class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-slate-700 transition hover:bg-white hover:text-slate-900 dark:text-slate-200 dark:hover:bg-slate-800/70"
         phx-click={JS.dispatch("phx:set-theme")}
         data-phx-theme="dark"
       >

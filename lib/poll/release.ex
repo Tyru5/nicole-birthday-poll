@@ -22,12 +22,14 @@ defmodule Poll.Release do
     load_app()
 
     for repo <- repos() do
-      {:ok, _, _} = Ecto.Migrator.with_repo(repo, fn _repo ->
-        seed_script = Application.app_dir(@app, "priv/repo/seeds.exs")
-        if File.exists?(seed_script) do
-          Code.eval_file(seed_script)
-        end
-      end)
+      {:ok, _, _} =
+        Ecto.Migrator.with_repo(repo, fn _repo ->
+          seed_script = Application.app_dir(@app, "priv/repo/seeds.exs")
+
+          if File.exists?(seed_script) do
+            Code.eval_file(seed_script)
+          end
+        end)
     end
   end
 
@@ -35,17 +37,19 @@ defmodule Poll.Release do
     load_app()
 
     for repo <- repos() do
-      {:ok, _, _} = Ecto.Migrator.with_repo(repo, fn _repo ->
-        # Delete existing data
-        Poll.Repo.delete_all(Poll.Polls.Option)
-        Poll.Repo.delete_all(Poll.Polls.Poll)
+      {:ok, _, _} =
+        Ecto.Migrator.with_repo(repo, fn _repo ->
+          # Delete existing data
+          Poll.Repo.delete_all(Poll.Polls.Option)
+          Poll.Repo.delete_all(Poll.Polls.Poll)
 
-        # Re-run seeds
-        seed_script = Application.app_dir(@app, "priv/repo/seeds.exs")
-        if File.exists?(seed_script) do
-          Code.eval_file(seed_script)
-        end
-      end)
+          # Re-run seeds
+          seed_script = Application.app_dir(@app, "priv/repo/seeds.exs")
+
+          if File.exists?(seed_script) do
+            Code.eval_file(seed_script)
+          end
+        end)
     end
   end
 

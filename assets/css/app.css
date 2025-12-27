@@ -128,5 +128,26 @@
 }
 
 .noise-layer {
-  background-image: linear-gradient(transparent 0%, rgba(15, 23, 42, 0.04) 100%), radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.08) 0, transparent 30%);
+  background-image:
+    linear-gradient(transparent 0%, rgba(15, 23, 42, 0.05) 100%),
+    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.08) 0, transparent 30%),
+    radial-gradient(circle at 70% 60%, rgba(2, 132, 199, 0.06) 0, transparent 40%);
+}
+
+.grid-layer {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 65%);
+  mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 65%);
+}
+
+[data-theme="dark"] .grid-layer {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 60%);
+  mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 60%);
 }
