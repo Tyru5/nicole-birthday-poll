@@ -32,8 +32,12 @@ if config_env() == :prod do
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
 
+  # Fly.io uses internal networking with sslmode=disable in DATABASE_URL
+  # Only enable SSL if DATABASE_URL doesn't specify sslmode=disable
+  ssl_enabled = not String.contains?(database_url, "sslmode=disable")
+
   config :poll, Poll.Repo,
-    # ssl: true,
+    ssl: ssl_enabled,
     url: database_url,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
     # For machines with several cores, consider starting multiple pools of `pool_size`
